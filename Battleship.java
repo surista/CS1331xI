@@ -16,7 +16,6 @@ public class Battleship {
         int p1Int1, p1Int2, playerHits, player, opponent;
         int player1Hits = 0;
         int player2Hits = 0;
-        boolean turnComplete = false;
 
         int turn = 1;
 
@@ -83,7 +82,6 @@ public class Battleship {
             System.out.printf("Player %d, enter row/column:\n", player);
 
             // This section validates the two coordinates.
-
             if (!input.hasNextInt()) {
                 System.out.println("Invalid coordinates. Choose different coordinates.");
                 continue;
@@ -108,6 +106,8 @@ public class Battleship {
                 continue;
             }
 
+
+            // this section decides hits or misses and updates boards
             if (opponentBoard[p1Int1][p1Int2] == '-') {
                 opponentBoard[p1Int1][p1Int2] = 'O';
                 playerTarget[p1Int1][p1Int2] = 'O';
@@ -142,6 +142,8 @@ public class Battleship {
                 }
             }
         } while (player1Hits != 5 && player2Hits != 5);
+
+        // game end
         System.out.println("Final boards:\n");
         printBattleShip(player1Board);
         System.out.println(" ");
@@ -166,8 +168,8 @@ public class Battleship {
         }
     }
 
-
-    public static char[][] initialBoard(char[][] player) {
+    // We use this to initiale the player boards
+    private static char[][] initialBoard(char[][] player) {
         Scanner input = new Scanner(System.in);
         int i = 1;
         int p1Int1, p1Int2;
@@ -199,5 +201,4 @@ public class Battleship {
         } while (i < 6);
         return player;
     }
-
 }
